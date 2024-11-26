@@ -1,4 +1,4 @@
-import 'package:counter_bloc/cubit/counter_cubit.dart';
+import 'package:counter_bloc/bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,7 +7,7 @@ class AdjustmentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counterCubit = BlocProvider.of<CounterCubit>(context);
+    final counterBloc = BlocProvider.of<CounterBloc>(context);
     return Scaffold(
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -15,7 +15,7 @@ class AdjustmentScreen extends StatelessWidget {
           FloatingActionButton(
             heroTag: 1,
             onPressed: () {
-              counterCubit.increment();
+              counterBloc.add(CounterIncremented());
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
@@ -26,7 +26,7 @@ class AdjustmentScreen extends StatelessWidget {
           FloatingActionButton(
             heroTag: 2,
             onPressed: () {
-              counterCubit.decrement();
+              counterBloc.add(CounterDecremented());
             },
             tooltip: 'Decrement',
             child: const Icon(Icons.minimize_rounded),
